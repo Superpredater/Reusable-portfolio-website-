@@ -22,7 +22,8 @@ export default function Home() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const saved = localStorage.getItem("portfolio-theme") || "system";
+    let saved = "system";
+    try { saved = localStorage.getItem("portfolio-theme") || "system"; } catch { /* Use system preference when storage is unavailable. */ }
     setTheme(saved);
     const apply = () => document.documentElement.dataset.theme = saved === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : saved;
     apply();
@@ -32,7 +33,8 @@ export default function Home() {
   }, []);
 
   function changeTheme(value: string) {
-    setTheme(value); localStorage.setItem("portfolio-theme", value);
+    setTheme(value);
+    try { localStorage.setItem("portfolio-theme", value); } catch { /* Theme still works when storage is unavailable. */ }
     document.documentElement.dataset.theme = value === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : value;
   }
 
