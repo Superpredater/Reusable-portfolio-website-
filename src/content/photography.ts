@@ -1,0 +1,1 @@
+export const photography = [{ title: "[Photography Title]", category: "[Photography Category]", image: "[Image Placeholder]" }, { title: "[Photography Title]", category: "[Photography Category]", image: "[Image Placeholder]" }, { title: "[Video Title]", category: "[Video Category]", image: "[Video Placeholder]" }];
